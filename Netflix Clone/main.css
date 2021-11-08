@@ -71,6 +71,7 @@ header nav a:hover{
     cursor: pointer;
     transition: .3s ease all;
 }
+
 .botao:hover{
     background-color: white;
     color: black;

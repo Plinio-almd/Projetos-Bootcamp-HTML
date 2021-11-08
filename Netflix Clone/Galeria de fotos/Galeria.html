@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .container-gallery{
+            display: flex;            
+            justify-content: space-between;
+            width: 50vw;
+            height: 70vh;
+            background-color: black;
+            margin: 20vh auto;
+            box-shadow: 0 20px 30px black;
+            border-radius: 10px;
+        }
+        .imgs{
+            position: absolute;
+            display: flex;
+            width: 50vw;
+            height: 70vh;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .item{
+            width: 50vw;
+            height: 70vh;
+        }
+        .item:first-child{
+            margin: -100%;
+        }
+        .item img{
+            width: 50vw;
+            height: 70vh;
+            border-radius: 10px;
+        }
+        .action-button {
+            font: bold 30px sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            color: #00000000;
+            user-select: none;
+            z-index: 1;
+        }
+        .action-button:hover{
+            color: white;
+            background-color: #00000055;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-gallery">
+        <div class="action-button" id="previous">&laquo;</div>
+        <div class="imgs" id="imgs"></div>        
+        <div class="action-button" id="next">&raquo;</div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
