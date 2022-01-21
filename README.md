@@ -7,6 +7,8 @@ Aqui você pode encontrar os projetos que desenvolvi durante o Bootcamp.
 - Recriando a HOME do Instagram
 - Jogo da Cobrinha
 - Clone Netflix - Minha versão: Dog-Pedia
+- Drum kit
+- Jogo Resgate
 
 
 
