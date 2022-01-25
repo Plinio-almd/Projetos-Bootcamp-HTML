@@ -11,15 +11,24 @@
    <div class="container">
        <div class="fundoGame" id="fundoGame">
 
-            <div class="inicio" id="inicio" onclick="start()">
+            <div class="inicio" id="inicio">
                 <h1>Resgate</h1>
-                <p>Utilize as teclas: W = Move Up, S = Move Down, D = Shoot.</p>
-                <p>Clique aqui para iniciar!</p>
+                <p>W = Move Up <br>S = Move Down <br>D = Shoot</p>
+                <p class="startGame"  onclick="start()">INICIAR</p>
             </div>
 
 
        </div>
    </div>
+
+   <!-- Sons do jogo !-->
+    <audio src="sons/som.mp3" preload="auto" id="somDisparo"></audio>
+    <audio src="sons/explosao.mp3" preload="auto" id="somExplosao"></audio>
+    <audio src="sons/musica_fundo.mp3" preload="auto" id="musica"></audio>
+    <audio src="sons/gameover.mp3" preload="auto" id="somGameover"></audio>
+    <audio src="sons/perdido.mp3" preload="auto" id="somPerdido"></audio>	
+    <audio src="sons/resgate.mp3" preload="auto" id="somResgate"></audio>
+
    
    <script src="../Jogo Resgate/js/jquery-1.11.1.min.js"></script>
    <script src="../Jogo Resgate/js/js.js"></script>

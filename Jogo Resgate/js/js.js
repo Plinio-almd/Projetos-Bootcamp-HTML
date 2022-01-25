@@ -13,6 +13,7 @@ function start() {
     var pontos=0;
     var salvos=0;
     var perdidos=0;
+    var energiaAtual=3;
     var podeAtirar=true;
     var fimdejogo=false;
     var jogo = {};
@@ -25,6 +26,18 @@ function start() {
         }
     
         jogo.pressionou = [];
+
+    var somDisparo=document.getElementById("somDisparo");
+    var somExplosao=document.getElementById("somExplosao");
+    var musica=document.getElementById("musica");
+    var somGameover=document.getElementById("somGameover");
+    var somPerdido=document.getElementById("somPerdido");
+    var somResgate=document.getElementById("somResgate");
+
+
+    //Música em loop
+    musica.addEventListener("ended", function(){ musica.currentTime = 0; musica.play(); }, false);
+    musica.play();
 
     //Verifica se o usuário pressionou alguma tecla	
 	
@@ -51,6 +64,7 @@ function start() {
     moveamigo();
     colisao();
     placar();
+    energia();
 
 	}
 
@@ -137,6 +151,7 @@ function start() {
 	
         if (podeAtirar==true) {
             
+            somDisparo.play();
             podeAtirar=false;
             
             topo = parseInt($("#jogador").css("top"))
@@ -177,7 +192,8 @@ function start() {
             
         // jogador com o inimigo1            
         if (colisao1.length>0) {
-            
+        
+        energiaAtual--;
         inimigo1X = parseInt($("#inimigo1").css("left"));
         inimigo1Y = parseInt($("#inimigo1").css("top"));
         explosao1(inimigo1X,inimigo1Y);
@@ -190,6 +206,7 @@ function start() {
         // jogador com o inimigo2 
         if (colisao2.length>0) {
 	
+        energiaAtual--;
         inimigo2X = parseInt($("#inimigo2").css("left"));
         inimigo2Y = parseInt($("#inimigo2").css("top"));
         explosao2(inimigo2X,inimigo2Y);
@@ -205,6 +222,7 @@ function start() {
 	    if (colisao3.length>0) {
 		
         pontos=pontos+100;
+        velocidade=velocidade+0.1;
         inimigo1X = parseInt($("#inimigo1").css("left"));
         inimigo1Y = parseInt($("#inimigo1").css("top"));
             
@@ -236,6 +254,7 @@ function start() {
 		
 	    if (colisao5.length>0) {
 		
+        somResgate.play();
         salvos++;
         reposicionaAmigo();
         $("#amigo").remove();
@@ -261,6 +280,8 @@ function start() {
     //Explosão 1
     function explosao1(inimigo1X,inimigo1Y) {
 
+        somExplosao.play();
+
         $("#fundoGame").append("<div id='explosao1'></div>");
         $("#explosao1").css("background-image", "url(imgs/explosao.png)");
         var div=$("#explosao1");
@@ -283,6 +304,8 @@ function start() {
     //Explosão2
 	
 	function explosao2(inimigo2X,inimigo2Y) {
+
+        somExplosao.play();
 	
         $("#fundoGame").append("<div id='explosao2'></div");
         $("#explosao2").css("background-image", "url(imgs/explosao.png)");
@@ -351,6 +374,8 @@ function start() {
 	
     function explosao3(amigoX,amigoY) {
 
+        somPerdido.play();
+
         $("#fundoGame").append("<div id='explosao3' class='anima4'></div");
         $("#explosao3").css("top",amigoY);
         $("#explosao3").css("left",amigoX);
@@ -370,5 +395,61 @@ function start() {
         $("#placar").html("<h2> Pontos: " + pontos + " Salvos: " + salvos + " Perdidos: " + perdidos + "</h2>");
         
     } //fim da função placar()
+
+    //Barra de energia
+
+    function energia() {
+        
+        if (energiaAtual==3) {
+            
+            $("#energia").css("background-image", "url(imgs/energia3.png)");
+        }
+
+        if (energiaAtual==2) {
+            
+            $("#energia").css("background-image", "url(imgs/energia2.png)");
+        }
+
+        if (energiaAtual==1) {
+            
+            $("#energia").css("background-image", "url(imgs/energia1.png)");
+        }
+
+        if (energiaAtual==0) {
+            
+            $("#energia").css("background-image", "url(imgs/energia0.png)");
+            
+            //Game Over
+            gameOver();
+        }
+
+    } // Fim da função energia()
+    //Função GAME OVER
+	function gameOver() {
+        fimdejogo=true;
+        musica.pause();
+        somGameover.play();
+        
+        window.clearInterval(jogo.timer);
+        jogo.timer=null;
+        
+        $("#jogador").remove();
+        $("#inimigo1").remove();
+        $("#inimigo2").remove();
+        $("#amigo").remove();
+        
+        $("#fundoGame").append("<div id='fim'></div>");
+        
+        $("#fim").html("<h1> Game Over </h1><p>Sua pontuação foi: " + pontos + "</p>" + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>");
+        } // Fim da função gameOver();
     
 }
+
+//Reinicia o Jogo
+		
+function reiniciaJogo() {
+	somGameover.pause();
+	$("#fim").remove();
+	start();
+	
+} //Fim da função reiniciaJogo
