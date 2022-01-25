@@ -1,6 +1,6 @@
 # Repositório de Projetos do BOOTCAMP HTML
 
-Aqui você pode encontrar os projetos que tenho desenvolvido durante os Bootcamps.
+Aqui você pode encontrar os projetos que tenho desenvolvido durante os Bootcamps. Materiais desenvolvidos em HTML5, CSS3 e JavaScript.
 
 ### Segue:
 
